@@ -2,17 +2,19 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float jumpForce = 500f;
-    public float moveSpeed = 7f;
+    public float jumpForce = 50f;
+    public float moveSpeed = 5f;
+    public float hitForce = 10f;
 
+ //   private bool bHit = false;
     private bool isleft = false;
-    private int JumpCount = 0;
     private bool isGrounded = false; // 바닥에 닿았는지 여부
     private bool isCrouched = false; // 앉는지 여부
     private bool isMoved = false; // ad 움직임 여부
 
     private Rigidbody2D playerRigidbody; //리지드바디
     private Animator animator; // 애니메이터
+
 
 
     private void Start()
@@ -24,39 +26,31 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-  
         float xInput = Input.GetAxis("Horizontal");
         float yInput = Input.GetAxis("Vertical");
-
-        //    float xSpeed = xInput * moveSpeed * Time.deltaTime;
-
         //사용자 입력을 감지 
         //좌우 앉기 점프 
 
-        if (xInput != 0)// 왼쪽인지 오른쪽인지 입력축 판단여부 1이면 d,→키, -1이면 a,←키
+        if (xInput != 0 && isCrouched != true)// x축 입력축 판단여부 && 일어서 있으면 
         {
-           // transform.position = new Vector2(transform.position.x + xSpeed, transform.position.y);
-            transform.position = new Vector2(transform.position.x + xInput * moveSpeed * Time.deltaTime, transform.position.y);
+            transform.position = new Vector2(transform.position.x + xInput * moveSpeed * Time.deltaTime, transform.position.y); //좌우 이동
             isMoved = true;
 
-            if (xInput < 0 && isleft != true)
+            if (xInput < 0 && isleft != true) //왼쪽으로 이동할때 캐릭터도 왼쪽 바라보기
             {
                 transform.Rotate(0f, 180f, 0f);
                 isleft = true;
             }
-            else if (xInput > 0 && isleft != false) {
+            else if (xInput > 0 && isleft != false) { // 오른쪽으로 이동할때 캐릭터도 다시 오른쪽 바라보기
                 transform.Rotate(0f, 180f, 0f);
                 isleft = false; 
             }
-                
-
         }
-        else { isMoved = false; }
+        else { isMoved = false; } 
 
 
-        if (yInput>0 && JumpCount < 1)//점프인지 앉기인지 입력축 이름 판단여부 1이면 w,↑키, -1이면 s,↓키
+        if (yInput>0 && isGrounded != false)//점프 입력축 && 땅 위에 있을 시
         {
-            JumpCount ++;
             playerRigidbody.velocity = Vector2.zero;
             playerRigidbody.AddForce(new Vector2(0, jumpForce));
         } else if (yInput == 0 && playerRigidbody.velocity.y > 0)
@@ -64,23 +58,33 @@ public class PlayerController : MonoBehaviour
             playerRigidbody.velocity = playerRigidbody.velocity * 0.5f;
         }
 
-        if (yInput < 0 && JumpCount < 1) //점프 안하고 s,↓키일떄 
+        if (yInput < 0 && isGrounded != false) //점프 안하고 s,↓키일떄 앉기
         {
             isCrouched = true;
         } else { isCrouched = false; }
             
-            animator.SetBool("Grounded", isGrounded);
-            animator.SetBool("Moved", isMoved);
-            animator.SetBool("Crouched", isCrouched);
+            animator.SetBool("Grounded", isGrounded); //서기 애니메이션 
+            animator.SetBool("Moved", isMoved); //이동 애니메이션
+            animator.SetBool("Crouched", isCrouched); //앉기 애니메이션
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    public void Hit() //피격 판정
+    {
+  //      if (!bHit) return;
+        playerRigidbody.velocity = Vector2.zero;
+        playerRigidbody.AddForce(new Vector2( -400*hitForce, 100 * jumpForce)); // 밀치기 - 이동방향의 반대방향으로 밀치게 해야함. 버그있음.
+        animator.SetTrigger("hit"); // 피격 애니메이션
+
+        //       bHit = false;
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
     {
         //바닥에 닿았음을 감지
         if (collision.contacts[0].normal.y > 0.7f)
         {
             isGrounded = true;
-            JumpCount = 0;
         }
     }
 
@@ -89,4 +93,10 @@ public class PlayerController : MonoBehaviour
         //바닥에서 벗어났음을 감지
         isGrounded = false;
     }
+
+/*    public void fHit()
+    {
+        bHit = true;
+    }
+*/
 }
