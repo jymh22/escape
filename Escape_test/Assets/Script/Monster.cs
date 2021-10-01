@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Moster : MonoBehaviour
+public class Monster : MonoBehaviour
 {
     public float speed = 1f;
 
@@ -13,7 +13,7 @@ public class Moster : MonoBehaviour
         mosterRigidbody = GetComponent<Rigidbody>();
     }
 
-    
+    /*
    private void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "Player")
@@ -25,5 +25,5 @@ public class Moster : MonoBehaviour
             }
         }
     }
-
+    */
 }

@@ -4,9 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     public float jumpForce = 50f;
     public float moveSpeed = 5f;
-    public float hitForce = 10f;
 
- //   private bool bHit = false;
     private bool isleft = false;
     private bool isGrounded = false; // 바닥에 닿았는지 여부
     private bool isCrouched = false; // 앉는지 여부
@@ -14,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D playerRigidbody; //리지드바디
     private Animator animator; // 애니메이터
-
+    private PlayerHit PlayerHit; //스크립트
 
 
     private void Start()
@@ -22,62 +20,78 @@ public class PlayerController : MonoBehaviour
         //컴포넌트 가져와 변수에 할당
         playerRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        PlayerHit = GetComponent<PlayerHit>();
     }
 
     private void Update()
     {
-        float xInput = Input.GetAxis("Horizontal");
-        float yInput = Input.GetAxis("Vertical");
-        //사용자 입력을 감지 
-        //좌우 앉기 점프 
+        PlayerMove();
+        PlayerJump();
+        PlayerAni();
+    }
 
-        if (xInput != 0 && isCrouched != true)// x축 입력축 판단여부 && 일어서 있으면 
+    private void PlayerMove()
+    {
+        float xInput = Input.GetAxis("Horizontal"); //사용자 입력을 감지
+
+
+
+        bool PlayerMove = (xInput != 0) && (isCrouched != true) && !PlayerHit.isHit; //x축 입력 && 일어서 있으면 
+        if (PlayerMove)
         {
-            transform.position = new Vector2(transform.position.x + xInput * moveSpeed * Time.deltaTime, transform.position.y); //좌우 이동
             isMoved = true;
+            transform.position = new Vector2(transform.position.x + xInput * moveSpeed * Time.deltaTime, transform.position.y); //좌우 이동
 
-            if (xInput < 0 && isleft != true) //왼쪽으로 이동할때 캐릭터도 왼쪽 바라보기
+            //캐릭터 방향 설정
+            bool PlayerLookleft = xInput < 0 && isleft != true;
+            bool PlayerLookright = xInput > 0 && isleft != false;
+            if (PlayerLookleft)
             {
                 transform.Rotate(0f, 180f, 0f);
                 isleft = true;
             }
-            else if (xInput > 0 && isleft != false) { // 오른쪽으로 이동할때 캐릭터도 다시 오른쪽 바라보기
+            else if (PlayerLookright)
+            {
                 transform.Rotate(0f, 180f, 0f);
-                isleft = false; 
+                isleft = false;
             }
         }
-        else { isMoved = false; } 
+        else { isMoved = false; }
+    }
 
+    private void PlayerJump()
+    {
+        float yInput = Input.GetAxis("Vertical"); //사용자 입력을 감지
 
-        if (yInput>0 && isGrounded != false)//점프 입력축 && 땅 위에 있을 시
+        bool PlayerJump = yInput > 0 && isGrounded != false;  //점프 입력축 && 땅 위에 있을 시
+        bool PlayerJumpEnd = yInput == 0 && playerRigidbody.velocity.y > 0; // 손 떼는 순간 && y값이 양수
+        if (PlayerJump)
         {
             playerRigidbody.velocity = Vector2.zero;
-            playerRigidbody.AddForce(new Vector2(0, jumpForce));
-        } else if (yInput == 0 && playerRigidbody.velocity.y > 0)
-        { // 손 떼는 순간 && y값이 양수라면 속도 절반
-            playerRigidbody.velocity = playerRigidbody.velocity * 0.5f;
+            playerRigidbody.AddForce(new Vector2(0, jumpForce)); //jumpForce만큼의 힘으로 점프
+        }
+        else if (PlayerJumpEnd)
+        {
+            playerRigidbody.velocity = playerRigidbody.velocity * 0.5f; //속도 절반
         }
 
-        if (yInput < 0 && isGrounded != false) //점프 안하고 s,↓키일떄 앉기
+        bool OnPlayerSit = yInput < 0 && isGrounded != false;
+        if (OnPlayerSit) //점프 안하고 s,↓키일떄 앉기
         {
             isCrouched = true;
-        } else { isCrouched = false; }
-            
-            animator.SetBool("Grounded", isGrounded); //서기 애니메이션 
-            animator.SetBool("Moved", isMoved); //이동 애니메이션
-            animator.SetBool("Crouched", isCrouched); //앉기 애니메이션
+        }
+        else { isCrouched = false; }
+
     }
 
-
-    public void Hit() //피격 판정
+    private void PlayerAni()
     {
-  //      if (!bHit) return;
-        playerRigidbody.velocity = Vector2.zero;
-        playerRigidbody.AddForce(new Vector2( -400*hitForce, 100 * jumpForce)); // 밀치기 - 이동방향의 반대방향으로 밀치게 해야함. 버그있음.
-        animator.SetTrigger("hit"); // 피격 애니메이션
-
-        //       bHit = false;
+        animator.SetBool("Grounded", isGrounded); //서기 애니메이션 
+        animator.SetBool("Moved", isMoved); //이동 애니메이션
+        animator.SetBool("Crouched", isCrouched); //앉기 애니메이션
     }
+
+
 
     private void OnCollisionStay2D(Collision2D collision)
     {
@@ -85,6 +99,7 @@ public class PlayerController : MonoBehaviour
         if (collision.contacts[0].normal.y > 0.7f)
         {
             isGrounded = true;
+            PlayerHit.isHit = false;
         }
     }
 
@@ -93,10 +108,4 @@ public class PlayerController : MonoBehaviour
         //바닥에서 벗어났음을 감지
         isGrounded = false;
     }
-
-/*    public void fHit()
-    {
-        bHit = true;
-    }
-*/
 }

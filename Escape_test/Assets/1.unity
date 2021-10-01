@@ -224,10 +224,9 @@ GameObject:
   - component: {fileID: 278887242}
   - component: {fileID: 278887243}
   - component: {fileID: 278887244}
-  - component: {fileID: 278887241}
   m_Layer: 0
-  m_Name: Moster
-  m_TagString: Moster
+  m_Name: Chiken
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -316,22 +315,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!58 &278887241
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 278887237}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.19
 --- !u!114 &278887242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1132,6 +1115,8 @@ GameObject:
   - component: {fileID: 1534033272}
   - component: {fileID: 1534033276}
   - component: {fileID: 1534033277}
+  - component: {fileID: 1534033279}
+  - component: {fileID: 1534033278}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1274,7 +1259,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 50
   moveSpeed: 5
+--- !u!114 &1534033278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534033271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac5b041d25bbe25438d3af36e4ebcc8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   hitForce: 10
+  isHit: 0
+--- !u!58 &1534033279
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534033271}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.9
 --- !u!1 &1985556115
 GameObject:
   m_ObjectHideFlags: 0
