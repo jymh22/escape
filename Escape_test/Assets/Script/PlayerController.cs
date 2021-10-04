@@ -63,8 +63,8 @@ public class PlayerController : MonoBehaviour
     {
         float yInput = Input.GetAxis("Vertical"); //사용자 입력을 감지
 
-        bool PlayerJump = yInput > 0 && isGrounded != false;  //점프 입력축 && 땅 위에 있을 시
-        bool PlayerJumpEnd = yInput == 0 && playerRigidbody.velocity.y > 0; // 손 떼는 순간 && y값이 양수
+        bool PlayerJump = yInput > 0 && isGrounded == true && !PlayerHit.isHit;  //점프 입력축 && 땅 위에 있을 시
+        bool PlayerJumpEnd = yInput == 0 && playerRigidbody.velocity.y > 0 && !PlayerHit.isHit; // 손 떼는 순간 && y값이 양수
         if (PlayerJump)
         {
             playerRigidbody.velocity = Vector2.zero;
@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         //바닥에 닿았음을 감지
-        if (collision.contacts[0].normal.y > 0.7f)
+        if (collision.contacts[0].normal.y > 0.7f && collision.collider.CompareTag("Ground"))
         {
             isGrounded = true;
             PlayerHit.isHit = false;
