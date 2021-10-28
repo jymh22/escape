@@ -24,9 +24,9 @@ public class PlayerHit : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.tag == "Monster" && !isHit)
+        if (other.tag == "Monster")// && !isHit
         {
             Hit();
         }
@@ -36,7 +36,7 @@ public class PlayerHit : MonoBehaviour
     {
         Debug.Log("ddd");
         playerRigidbody.velocity = Vector2.zero;
-        playerRigidbody.AddForce(new Vector2(-20f * hitForce, 20f * hitForce)); // 밀치기 - 이동방향의 반대방향으로 밀치게 해야함. 버그있음.
+        playerRigidbody.AddForce(new Vector2(-20f * hitForce, 100f * hitForce)); // 밀치기 - 이동방향의 반대방향으로 밀치게 해야함. 버그있음.
         animator.SetTrigger("hit"); // 피격 애니메이션
         isHit = true;
     }
