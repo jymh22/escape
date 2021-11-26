@@ -12,7 +12,10 @@ public class Monster : MonoBehaviour
     {
         mosterRigidbody = GetComponent<Rigidbody>();
     }
-
+    void Update()
+    {
+        transform.position = new Vector2(transform.position.x - speed * Time.deltaTime, transform.position.y);
+    }
     /*
    private void OnTriggerStay2D(Collider2D other)
     {
