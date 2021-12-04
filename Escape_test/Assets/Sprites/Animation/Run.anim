@@ -22,18 +22,18 @@ AnimationClip:
     - time: 0
       value: {fileID: 21300000, guid: d7159a67a357942ef8404ce06e20db64, type: 3}
     - time: 0.06666667
-      value: {fileID: 21300000, guid: d7159a67a357942ef8404ce06e20db64, type: 3}
-    - time: 0.083333336
       value: {fileID: 21300002, guid: d7159a67a357942ef8404ce06e20db64, type: 3}
-    - time: 0.11666667
+    - time: 0.16666667
       value: {fileID: 21300004, guid: d7159a67a357942ef8404ce06e20db64, type: 3}
-    - time: 0.23333333
-      value: {fileID: 21300008, guid: d7159a67a357942ef8404ce06e20db64, type: 3}
-    - time: 0.26666668
+    - time: 0.21666667
       value: {fileID: 21300006, guid: d7159a67a357942ef8404ce06e20db64, type: 3}
-    - time: 0.3
-      value: {fileID: 21300012, guid: d7159a67a357942ef8404ce06e20db64, type: 3}
+    - time: 0.28333333
+      value: {fileID: 21300008, guid: d7159a67a357942ef8404ce06e20db64, type: 3}
     - time: 0.35
+      value: {fileID: 21300010, guid: d7159a67a357942ef8404ce06e20db64, type: 3}
+    - time: 0.43333334
+      value: {fileID: 21300012, guid: d7159a67a357942ef8404ce06e20db64, type: 3}
+    - time: 0.5
       value: {fileID: 21300014, guid: d7159a67a357942ef8404ce06e20db64, type: 3}
     attribute: m_Sprite
     path: 
@@ -55,11 +55,11 @@ AnimationClip:
       isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: 21300000, guid: d7159a67a357942ef8404ce06e20db64, type: 3}
-    - {fileID: 21300000, guid: d7159a67a357942ef8404ce06e20db64, type: 3}
     - {fileID: 21300002, guid: d7159a67a357942ef8404ce06e20db64, type: 3}
     - {fileID: 21300004, guid: d7159a67a357942ef8404ce06e20db64, type: 3}
-    - {fileID: 21300008, guid: d7159a67a357942ef8404ce06e20db64, type: 3}
     - {fileID: 21300006, guid: d7159a67a357942ef8404ce06e20db64, type: 3}
+    - {fileID: 21300008, guid: d7159a67a357942ef8404ce06e20db64, type: 3}
+    - {fileID: 21300010, guid: d7159a67a357942ef8404ce06e20db64, type: 3}
     - {fileID: 21300012, guid: d7159a67a357942ef8404ce06e20db64, type: 3}
     - {fileID: 21300014, guid: d7159a67a357942ef8404ce06e20db64, type: 3}
   m_AnimationClipSettings:
@@ -67,7 +67,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.36666667
+    m_StopTime: 0.51666665
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
