@@ -15,8 +15,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRigidbody; //리지드바디
     private Animator animator; // 애니메이터
     private PlayerHit PlayerHit; //스크립트
-    private CircleCollider2D CircleCollider2D;
-
+//    private CircleCollider2D CircleCollider2D; //히트 박스 제거하여 사용X
+    private CapsuleCollider2D CapsuleCollider2D;
 
 
     private void Start()
@@ -25,7 +25,8 @@ public class PlayerController : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         PlayerHit = GetComponent<PlayerHit>();
-        CircleCollider2D = GetComponent<CircleCollider2D>();
+ //       CircleCollider2D = GetComponent<CircleCollider2D>();
+        CapsuleCollider2D = GetComponent<CapsuleCollider2D>();
 
     }
 
@@ -82,10 +83,12 @@ public class PlayerController : MonoBehaviour
         bool OnPlayerSit = yInput < 0 && isGrounded != false;
         if (OnPlayerSit) //점프 안하고 s,↓키일떄 앉기
         {
-            CircleCollider2D.enabled = false;
+ //           CircleCollider2D.enabled = false; //히트박스 제거하여 Capsule이 대신 사용중
+            CapsuleCollider2D.enabled = false;
             isCrouched = true;
         } else {
-            CircleCollider2D.enabled = true;
+ //           CircleCollider2D.enabled = true;
+            CapsuleCollider2D.enabled = true;
             isCrouched = false;
         
         }
