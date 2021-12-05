@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Monster
   - Ground
+  - Background
   layers:
   - Default
   - TransparentFX
@@ -42,4 +43,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 1395768657
+    locked: 0
+  - name: Middleground
+    uniqueID: 671553019
+    locked: 0
+  - name: Foreground
+    uniqueID: 4044275877
     locked: 0

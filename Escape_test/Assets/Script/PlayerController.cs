@@ -7,12 +7,16 @@ public class PlayerController : MonoBehaviour
 
     private bool isleft = false;
     private bool isGrounded = false; // 바닥에 닿았는지 여부
-    private bool isCrouched = false; // 앉는지 여부
     private bool isMoved = false; // ad 움직임 여부
+
+    [SerializeField] 
+    private bool isCrouched = false; // 앉는지 여부
 
     private Rigidbody2D playerRigidbody; //리지드바디
     private Animator animator; // 애니메이터
     private PlayerHit PlayerHit; //스크립트
+//    private CircleCollider2D CircleCollider2D; //히트 박스 제거하여 사용X
+    private CapsuleCollider2D CapsuleCollider2D;
 
 
     private void Start()
@@ -21,6 +25,9 @@ public class PlayerController : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         PlayerHit = GetComponent<PlayerHit>();
+ //       CircleCollider2D = GetComponent<CircleCollider2D>();
+        CapsuleCollider2D = GetComponent<CapsuleCollider2D>();
+
     }
 
     private void Update()
@@ -33,8 +40,6 @@ public class PlayerController : MonoBehaviour
     private void PlayerMove()
     {
         float xInput = Input.GetAxis("Horizontal"); //사용자 입력을 감지
-
-
 
         bool PlayerMove = (xInput != 0) && (isCrouched != true) && !PlayerHit.isHit; //x축 입력 && 일어서 있으면 
         if (PlayerMove)
@@ -78,9 +83,15 @@ public class PlayerController : MonoBehaviour
         bool OnPlayerSit = yInput < 0 && isGrounded != false;
         if (OnPlayerSit) //점프 안하고 s,↓키일떄 앉기
         {
+ //           CircleCollider2D.enabled = false; //히트박스 제거하여 Capsule이 대신 사용중
+            CapsuleCollider2D.enabled = false;
             isCrouched = true;
+        } else {
+ //           CircleCollider2D.enabled = true;
+            CapsuleCollider2D.enabled = true;
+            isCrouched = false;
+        
         }
-        else { isCrouched = false; }
 
     }
 
@@ -90,8 +101,6 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Moved", isMoved); //이동 애니메이션
         animator.SetBool("Crouched", isCrouched); //앉기 애니메이션
     }
-
-
 
     private void OnCollisionStay2D(Collision2D collision)
     {
