@@ -14,7 +14,6 @@ public class Background : MonoBehaviour
     {
         BoxCollider2D backgroundCollider = GetComponent<BoxCollider2D>();
         width = backgroundCollider.size.x; //x ±Ê¿Ã = width
-        Rewidth = backgroundCollider.transform.position.x;
     }
 
 
