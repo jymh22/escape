@@ -68,19 +68,20 @@ public class PlayerController : MonoBehaviour
     {
         float yInput = Input.GetAxis("Vertical"); //사용자 입력을 감지
 
-        bool PlayerJump = yInput > 0 && isGrounded == true && !PlayerHit.isHit;  //점프 입력축 && 땅 위에 있을 시
-        bool PlayerJumpEnd = yInput == 0 && playerRigidbody.velocity.y > 0 && !PlayerHit.isHit; // 손 떼는 순간 && y값이 양수
+        bool PlayerJump = (yInput > 0) && (isGrounded == true) && (!PlayerHit.isHit);  //점프 입력축 && 땅 위에 있을 시
+        bool PlayerJumpEnd = (yInput == 0) && (playerRigidbody.velocity.y > 0) && (!PlayerHit.isHit); // 손 떼는 순간 && y값이 양수
         if (PlayerJump)
         {
             playerRigidbody.velocity = Vector2.zero;
-            playerRigidbody.AddForce(new Vector2(0, jumpForce)); //jumpForce만큼의 힘으로 점프
+            //playerRigidbody.AddForce(new Vector2(0, jumpForce));
+            playerRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); //jumpForce만큼의 힘으로 점프
         }
         else if (PlayerJumpEnd)
         {
             playerRigidbody.velocity = playerRigidbody.velocity * 0.5f; //속도 절반
         }
 
-        bool OnPlayerSit = yInput < 0 && isGrounded != false;
+        bool OnPlayerSit = (yInput < 0) && (isGrounded);
         if (OnPlayerSit) //점프 안하고 s,↓키일떄 앉기
         {
  //           CircleCollider2D.enabled = false; //히트박스 제거하여 Capsule이 대신 사용중
@@ -105,7 +106,7 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         //바닥에 닿았음을 감지
-        if (collision.contacts[0].normal.y > 0.7f && collision.collider.CompareTag("Ground"))
+        if (collision.contacts[0].normal.y > 0.9f && collision.collider.CompareTag("Ground"))
         {
             isGrounded = true;
             PlayerHit.isHit = false;

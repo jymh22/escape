@@ -25,9 +25,9 @@ public class PlayerHit : MonoBehaviour
         
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Monster")// && !isHit
+        if (other.tag == "Monster" && !isHit)
         {
             Hit();
         }
