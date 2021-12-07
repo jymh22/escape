@@ -27,17 +27,17 @@ public class Monster : MonoBehaviour
         mosterRigidbody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
 
-        speed = Random.Range(speedMIN, speedMax); //랜덤속도 지정
-        idleTime = Random.Range(idleTimeMin, idleTimeMax); //가만히 있는 랜덤시간 지정
+        speed = Random.Range(speedMIN, speedMax); //속도를 랜덤으로 지정
+        idleTime = Random.Range(idleTimeMin, idleTimeMax); //가만히 있는 시간을 랜덤으로 지정
         timeAfterIdle = 0f; //가만히 있는 동안 지난 시간
 
         Destroy(gameObject, destroyTime); // 몬스터 제거(물체, 소멸시간(second))
     }
     void Update()
     {
-        timeAfterIdle += Time.deltaTime;
+        timeAfterIdle += Time.deltaTime; //초당 1씩 증가
 
-        //가만히 있는 시간 지나면 움직임
+        //가만히 있는 시간 지나면 MosterMoved() 함수 실행하여 움직임
         if(timeAfterIdle > idleTime)   MosterMoved();
 
         animator.SetBool("Moved", isMoved); //애니메이션  
@@ -46,8 +46,9 @@ public class Monster : MonoBehaviour
 
     private void  MosterMoved()
     {
-        isMoved = true; //true면 move, false면 idle
+        isMoved = true; //true면 move 애니메이션, false면 idle 애니메이션 
         transform.position = new Vector2(transform.position.x - speed * Time.deltaTime, transform.position.y);
+        //위치 x좌표에 초당 -speed를 합함, 이는 왼쪽으로 이동함을 의미
     }
 
 

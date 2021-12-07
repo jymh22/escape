@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerHit : MonoBehaviour
 {
-    public float hitForce = 10f;
-    public bool isHit = false;
+    public float hitForce = 10f; //피격시 가해지는 힘
+    public bool isHit = false; 
 
     private Rigidbody2D playerRigidbody; //리지드바디
     private Animator animator; // 애니메이터
@@ -26,19 +26,19 @@ public class PlayerHit : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other)
-    {
+    { //트리거와 접촉하는 순간
         if (other.tag == "Monster" && !isHit)
-        {
+        { //접촉한 트리거의 태그가 Moster이고 피격된 상태가 아니면
             Hit();
         }
     }
 
     private void Hit() //피격 판정
     {
-        Debug.Log("ddd");
-        playerRigidbody.velocity = Vector2.zero;
-        playerRigidbody.AddForce(new Vector2(-20f * hitForce, 100f * hitForce)); // 밀치기 - 이동방향의 반대방향으로 밀치게 해야함. 버그있음.
+        Debug.Log("ddd"); //로그 출력
+        playerRigidbody.velocity = Vector2.zero; //움직이던 캐릭터의 속도를 0으로 만듦
+        playerRigidbody.AddForce(new Vector2(-20f * hitForce, 100f * hitForce)); //오른쪽으로 밀치기 
         animator.SetTrigger("hit"); // 피격 애니메이션
-        isHit = true;
+        isHit = true; //피격된 상태임을 알림
     }
 }

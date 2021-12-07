@@ -51,6 +51,21 @@ TagManager:
   - name: Middleground
     uniqueID: 671553019
     locked: 0
+  - name: HiddenMoster
+    uniqueID: 478079037
+    locked: 0
   - name: Foreground
     uniqueID: 4044275877
+    locked: 0
+  - name: Moster
+    uniqueID: 560902957
+    locked: 0
+  - name: Item
+    uniqueID: 3027652113
+    locked: 0
+  - name: Player
+    uniqueID: 3150844279
+    locked: 0
+  - name: FForeground
+    uniqueID: 2756727145
     locked: 0

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2299350696225272941}
   - component: {fileID: 2299350696225272940}
   - component: {fileID: 2299350696225272930}
-  - component: {fileID: 2299350696225272928}
   - component: {fileID: 2299350696225272929}
   - component: {fileID: 2299350696225272934}
+  - component: {fileID: 869659274}
   m_Layer: 0
   m_Name: Chiken
   m_TagString: Monster
@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -250691419
-  m_SortingLayer: 3
+  m_SortingLayerID: 560902957
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -23792059411196189, guid: 76e13cc3b8753034799ba4ec46483890, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -105,23 +105,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2299350696225272928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2299350696225272943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5722f5e6edbc41a4ca5f0c49b148b53b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedMIN: 1
-  speedMax: 4
-  idleTimeMin: 0
-  idleTimeMax: 2
-  destroyTime: 7
 --- !u!50 &2299350696225272929
 Rigidbody2D:
   serializedVersion: 4
@@ -158,4 +141,17 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.14
+  m_Radius: 0.17
+--- !u!114 &869659274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2299350696225272943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df07f46d48d0d674f85b68d34686cd11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1
