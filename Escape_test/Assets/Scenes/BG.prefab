@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2132507232544750147}
   - component: {fileID: 2132507232544750148}
   - component: {fileID: 2132507232544750149}
-  - component: {fileID: 2132507232544750146}
+  - component: {fileID: 1747766473423686810}
   m_Layer: 0
   m_Name: Sky (2)
   m_TagString: Untagged
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BG: {fileID: 0}
   speed: 1
---- !u!61 &2132507232544750146
+--- !u!61 &1747766473423686810
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,7 +108,7 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 2132507233172347521}
   - component: {fileID: 2132507233172347522}
   - component: {fileID: 2132507233172347523}
-  - component: {fileID: 2132507233172347520}
+  - component: {fileID: 1512241291345361332}
   m_Layer: 0
   m_Name: Sky (1)
   m_TagString: Untagged
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BG: {fileID: 0}
   speed: 1
---- !u!61 &2132507233172347520
+--- !u!61 &1512241291345361332
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -265,7 +265,7 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -292,7 +292,7 @@ GameObject:
   - component: {fileID: 2132507233700500557}
   - component: {fileID: 2132507233700500558}
   - component: {fileID: 2132507233700500559}
-  - component: {fileID: 2132507233700500556}
+  - component: {fileID: 7080062729217835841}
   m_Layer: 0
   m_Name: Sky
   m_TagString: Untagged
@@ -379,7 +379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BG: {fileID: 0}
   speed: 1
---- !u!61 &2132507233700500556
+--- !u!61 &7080062729217835841
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -389,7 +389,7 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

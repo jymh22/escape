@@ -25,7 +25,7 @@ public class PlayerHit : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     { //트리거와 접촉하는 순간
         if (other.tag == "Monster" && !isHit)
         { //접촉한 트리거의 태그가 Moster이고 피격된 상태가 아니면
