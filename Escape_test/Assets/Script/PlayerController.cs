@@ -117,4 +117,9 @@ public class PlayerController : MonoBehaviour
         //¹Ù´Ú¿¡¼­ ¹þ¾î³µÀ½À» °¨Áö
         isGrounded = false;
     }
+
+    public void gameEnd()
+    {
+        gameObject.SetActive(false);
+    }
 }
