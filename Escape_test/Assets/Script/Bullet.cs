@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float BulletSpeed = 1.0f;
-    public float destroyTime = 5f; // 模資 衛除
+    public float destroyTime = 10f; // 模資 衛除
 
     private void Start()
     {

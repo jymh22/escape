@@ -51,8 +51,7 @@ public class MonsterGroundMove : MonoBehaviour
         if (other.tag == "GroundEnd")
         {
             turnabout(); //방향전환
- 
-
+            transform.position = new Vector2(transform.position.x - (moveSpeed * Time.deltaTime), transform.position.y); //speed만큼 이동
         }
     }
 

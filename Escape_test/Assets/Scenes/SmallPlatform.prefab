@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2392398233361975162}
   - component: {fileID: 2392398233361975160}
+  - component: {fileID: 6019241081348709843}
   m_Layer: 0
   m_Name: Platform (6)
   m_TagString: Ground
@@ -83,6 +84,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &6019241081348709843
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2392398233361975165}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.48318577, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10, y: 2}
+    newSize: {x: 1, y: 2}
+    adaptiveTilingThreshold: 0.13
+    drawMode: 2
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.0309372, y: 2}
+  m_EdgeRadius: 0
 --- !u!1 &3883236906450710813
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,7 +209,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5027853798315968359}
   - component: {fileID: 5027853798315968357}
-  - component: {fileID: 5027853798315968358}
   m_Layer: 0
   m_Name: Platform (7)
   m_TagString: Ground
@@ -255,32 +281,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &5027853798315968358
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 6334502112600149778, guid: bca294f5f9cf8c249adac28e3da03228, type: 3}
-  m_PrefabInstance: {fileID: 1310031236852779124}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5027853798315968352}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.4730296, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10, y: 2}
-    newSize: {x: 1, y: 2}
-    adaptiveTilingThreshold: 0.13
-    drawMode: 2
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.9833918, y: 2}
-  m_EdgeRadius: 0
 --- !u!1 &5906416084175759833
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,7 +433,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform (7)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: bca294f5f9cf8c249adac28e3da03228, type: 3}
 --- !u!1001 &2379708679755331573
 PrefabInstance:
