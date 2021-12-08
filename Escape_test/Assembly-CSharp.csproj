@@ -65,8 +65,15 @@
     <Compile Include="Assets\Script\Background.cs" />
     <Compile Include="Assets\Script\PlayerController.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
+    <Compile Include="Assets\Cainos\Pixel Art Top Down - Basic\Script\PropsAltar.cs" />
+    <Compile Include="Assets\Cainos\Pixel Art Top Down - Basic\Script\SpriteColorAnimation.cs" />
+    <Compile Include="Assets\Cainos\Pixel Art Top Down - Basic\Script\TopDownCharacterController.cs" />
+    <Compile Include="Assets\Cainos\Pixel Art Top Down - Basic\Script\LayerTrigger.cs" />
   </ItemGroup>
   <ItemGroup>
+     <None Include="Assets\Cainos\Pixel Art Top Down - Basic\Changelog.txt" />
+     <None Include="Assets\Cainos\Pixel Art Top Down - Basic\Shader\SH Sprite Shadow.shader" />
+     <None Include="Assets\Cainos\Pixel Art Top Down - Basic\Shader\SH Sprite Shadow Mask.shader" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
