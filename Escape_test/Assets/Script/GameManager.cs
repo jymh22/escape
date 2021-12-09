@@ -10,29 +10,37 @@ public class GameManager : MonoBehaviour
     public Text timeText;
     public Text recordText;
 
+
+    private PropsAltar alter;
     private float playTime;
-    private bool isGameEnd;
+
+
     // Start is called before the first frame update
     void Start()
     {
         playTime = 0;
-        isGameEnd = false;
+        alter = FindObjectOfType<PropsAltar>();
+        PlayerPrefs.SetFloat("BestTime", 100000);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isGameEnd)
+
+        if (!alter.gameEnd)
         {
             playTime += Time.deltaTime;
             timeText.text = "Time: " + (int)playTime;
+        } else
+        {
+            endGame();
         }
 
     }
 
+
     public void endGame()
     {
-        isGameEnd = true;
         gameClearText.SetActive(true);
 
         float bestTime = PlayerPrefs.GetFloat("BestTime");
@@ -41,7 +49,6 @@ public class GameManager : MonoBehaviour
         {
             bestTime = playTime;
             PlayerPrefs.SetFloat("BestTime", bestTime);
-
         }
 
         recordText.text = "Best Time: " + (int)bestTime;

@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator; // 애니메이터
     private PlayerHit PlayerHit; //스크립트
     private CapsuleCollider2D CapsuleCollider2D;
+    private PropsAltar alter;
 
 
     private void Start()
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         PlayerHit = GetComponent<PlayerHit>();
         CapsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        alter = FindObjectOfType<PropsAltar>();
 
     }
 
@@ -33,6 +35,8 @@ public class PlayerController : MonoBehaviour
         PlayerMove();
         PlayerJump();
         PlayerAni();
+
+        if (alter.gameEnd) gameEnd();
     }
 
     private void PlayerMove()
