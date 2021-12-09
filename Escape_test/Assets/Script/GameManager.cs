@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     {
         playTime = 0;
         alter = FindObjectOfType<PropsAltar>();
-        PlayerPrefs.SetFloat("BestTime", 100000);
+
     }
 
     // Update is called once per frame
@@ -44,8 +44,10 @@ public class GameManager : MonoBehaviour
         gameClearText.SetActive(true);
 
         float bestTime = PlayerPrefs.GetFloat("BestTime");
+        if(bestTime ==0)
+            PlayerPrefs.SetFloat("BestTime", 100000);
 
-        if(playTime < bestTime)
+        if (playTime < bestTime)
         {
             bestTime = playTime;
             PlayerPrefs.SetFloat("BestTime", bestTime);
@@ -54,9 +56,6 @@ public class GameManager : MonoBehaviour
         recordText.text = "Best Time: " + (int)bestTime;
     }
 
-    public void SceneLoad()
-    {
-        if(Input.GetKeyDown(KeyCode.KeypadEnter))
-        SceneManager.LoadScene("1");
-    }
+
 }
+

@@ -4,7 +4,6 @@ using UnityEngine;
 
 //when something get into the alta, make the runes glow
 
-
     public class PropsAltar : MonoBehaviour
     {
         public List<SpriteRenderer> runes;
@@ -19,13 +18,11 @@ using UnityEngine;
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.tag == "Player") {
-
             gameEnd = true;
 
             targetColor = new Color(1, 1, 1, 1);
 
         }
-
     }
     private void Start()
     {
@@ -36,8 +33,7 @@ using UnityEngine;
         {
         if(gameEnd)
             timeAfter += Time.deltaTime;
-
-        if (timeAfter > 2)
+        if (timeAfter > 3)
             chiken.SetActive(true);
 
         curColor = Color.Lerp(curColor, targetColor, lerpSpeed * Time.deltaTime);
