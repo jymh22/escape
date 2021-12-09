@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
-{
+{ //플레이어 컨트롤 스크립트
     public float jumpForce = 50f; //점프할때 받는 힘
     public float moveSpeed = 5f; //좌우로 움직일 때의 속도
 
@@ -12,16 +12,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] //private이지만 컴포넌트로 접근할 수 있다는 것을 말함
     private bool isCrouched = false; // 앉는지 여부
 
-    private Rigidbody2D playerRigidbody; //리지드바디
-    private Animator animator; // 애니메이터
-    private PlayerHit PlayerHit; //스크립트
-    private CapsuleCollider2D CapsuleCollider2D;
-    private PropsAltar alter;
+    private Rigidbody2D playerRigidbody; //위치 제어 컴포넌트
+    private Animator animator; // 애니메이션 컴포넌트
+    private PlayerHit PlayerHit; //플레이어 피격 스크립트
+    private CapsuleCollider2D CapsuleCollider2D; //충돌 범위 컴포넌트
+    private PropsAltar alter; //GameEnd 확인을 위한 스트립트
 
 
-    private void Start()
+    private void Start() //생성자
     {
-        //컴포넌트 가져와 변수에 할당
+        //각 컴포넌트와 스크립트 변수 할당
         playerRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         PlayerHit = GetComponent<PlayerHit>();
@@ -30,53 +30,47 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void Update()
+    private void Update() //매 프레임 마다 실행
     {
-        PlayerMove();
-        PlayerJump();
-        PlayerAni();
-
-        if (alter.gameEnd) gameEnd();
+        PlayerMove(); //플레이어 이동
+        PlayerJump(); //플레이어 점프 && 앉기
+        PlayerAni(); //플레이어 애니메이션
     }
 
     private void PlayerMove()
     {
-        float xInput = Input.GetAxis("Horizontal"); //사용자 입력의 x축을 감지
-        //←→키, A D 키, 스틱 등의 키 등의 일반적인 입력뿐만이 아니라 원하면 원하는 키로 인식하도록 바꿀 수도 있음
-
-        bool PlayerMove = (xInput != 0) && (isCrouched != true) && !PlayerHit.isHit; //x축 입력 && 일어서 있으면 
+        float xInput = Input.GetAxis("Horizontal"); //사용자 입력의 x축을 감지←→
+        bool PlayerMove = (xInput != 0) && (!isCrouched) && (!PlayerHit.isHit);
+        //←→ 입력 && 일어서 있을 시 && 피격 상태가 아닐 시
         if (PlayerMove)
         {
-            isMoved = true; 
-            transform.position = new Vector2(transform.position.x + xInput * moveSpeed * Time.deltaTime, transform.position.y); //좌우 이동
+            isMoved = true; //움직이는 상태임을 알림
+            transform.position = new Vector2(transform.position.x + xInput * moveSpeed * Time.deltaTime, transform.position.y);
+            //moveSpeed만큼의 속도로 좌우 이동
 
-            //캐릭터 방향 설정
-            bool PlayerLookleft = xInput < 0 && isleft != true;
-            bool PlayerLookright = xInput > 0 && isleft != false;
-            if (PlayerLookleft)
+            //캐릭터 방향 전환 설정
+            bool PlayerLookleft = (xInput < 0) && (!isleft); //오른쪽을 보고 있을 때 왼쪽 버튼 누른 경우
+            bool PlayerLookright = (xInput > 0) && (isleft); //왼쪽을 보고 있을 때 오른쪽 버튼 누른 경우
+            if (PlayerLookleft || PlayerLookright)
             { 
-                transform.Rotate(0f, 180f, 0f); //캐릭터를 180도 회전하여 왼쪽을 바라보는 것처럼 만듦
-                isleft = true; //다시 왼쪽을 누를 경우 다시 회전하지 않도록 함
-            }
-            else if (PlayerLookright)
-            {
-                transform.Rotate(0f, 180f, 0f); //180도 회전하여 오른쪽을 바라보는 것처럼 만듦
-                isleft = false;
+                transform.Rotate(0f, 180f, 0f); //캐릭터를 180도 회전하여 반대쪽을 바라보는 것처럼 만듦
+                isleft = !isleft; //반대쪽을 보고 있다고 저장(방량전환)
             }
         }
-        else { isMoved = false; }
+        else { isMoved = false; } //움직이지 않을 경우 isMoved 비활성화
     }
 
     private void PlayerJump()
     {
-        float yInput = Input.GetAxis("Vertical"); //사용자 입력의 y축을 감지
+        float yInput = Input.GetAxis("Vertical"); //사용자 입력의 y축을 감지↑↓
 
-        bool PlayerJump = (yInput > 0) && (isGrounded == true) && (!PlayerHit.isHit);  //점프 입력축 && 땅 위에 있을 시
-        bool PlayerJumpEnd = (yInput == 0) && (playerRigidbody.velocity.y > 0) && (!PlayerHit.isHit); // 손 떼는 순간 && y값이 양수
+        bool PlayerJump = (yInput > 0) && (isGrounded) && (!PlayerHit.isHit);
+        //↑ 입력 && 땅 위에 있을 시 && 피격 상태 아닐 시
+        bool PlayerJumpEnd = (yInput == 0) && (playerRigidbody.velocity.y > 0) && (!PlayerHit.isHit);
+        //점프 후 ↑에서 손뗄 때 && 피격 상태 아닐 시
         if (PlayerJump)
         {
             playerRigidbody.velocity = Vector2.zero; //점프할 때 속도 초기화
-            //playerRigidbody.AddForce(new Vector2(0, jumpForce));
             playerRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); //jumpForce만큼의 힘으로 점프
         }
         else if (PlayerJumpEnd)
@@ -86,14 +80,13 @@ public class PlayerController : MonoBehaviour
             //이로 인해 키를 빨리 뗄 수록 더 빨리 떨어짐
         }
 
-        bool OnPlayerSit = (yInput < 0) && (isGrounded);
-        if (OnPlayerSit) //점프 안하고 s,↓키일떄 앉기
+        bool OnPlayerSit = (yInput < 0) && (isGrounded); //아래버튼 눌렀을 때, 땅 위에 있을 때
+        if (OnPlayerSit)
         {
- //circle 히트박스 제거하여 Capsule(일어서있을 때의 콜라이더)이 대신 사용중
-            CapsuleCollider2D.enabled = false; //앉을경우 히트박스 비활성화
+            CapsuleCollider2D.enabled = false; //앉을경우 서있을 때, 히트박스 비활성화
             isCrouched = true; // 앉았음을 감지
         } else { 
-            CapsuleCollider2D.enabled = true; //일어날 경우 히트박스 활성화
+            CapsuleCollider2D.enabled = true; //일어날 경우 히트박스 다시 활성화
             isCrouched = false;
         }
 
@@ -107,23 +100,17 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnCollisionStay2D(Collision2D collision)
-    {
-        //바닥에 닿았음을 감지
-        if (collision.contacts[0].normal.y > 0.9f && collision.collider.CompareTag("Ground"))
-        { //y축으로 물체 표면에 닿고, 이 물체의 태그가 Ground일 경우 
-            isGrounded = true; 
-            PlayerHit.isHit = false;
+    { //다른 물체와 접촉하는 동안 (바닥에 닿았음을 감지)
+        if (collision.contacts[0].normal.y > 0.7f && collision.collider.CompareTag("Ground"))
+        { //물체의 위쪽에 닿고, 이 물체가 Ground일 경우 
+            isGrounded = true; //isGrounded활성화
+            PlayerHit.isHit = false; //피격 상태 제거
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
-    {
-        //바닥에서 벗어났음을 감지
-        isGrounded = false;
+    { //다른 물체와의 접촉을 벗어나는 순간 (바닥에서 벗어났음을 감지)
+        isGrounded = false; //isGrounded비활성화
     }
 
-    public void gameEnd()
-    {
-        gameObject.SetActive(false);
-    }
 }

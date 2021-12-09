@@ -20,13 +20,10 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
-    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.IK.Runtime.dll:
     - UnityEditor.U2D.IK.IKEditorManagerHelper
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
-    - UnityEditor.Tilemaps.GridPaletteBrushes
-    - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
@@ -91,43 +88,43 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1724}
     - Class: 114
-      Script: {instanceID: 2134}
+      Script: {instanceID: 2132}
     - Class: 114
-      Script: {instanceID: 2480}
+      Script: {instanceID: 2478}
     - Class: 114
-      Script: {instanceID: 2526}
+      Script: {instanceID: 2524}
     - Class: 114
-      Script: {instanceID: 2532}
+      Script: {instanceID: 2530}
     - Class: 114
-      Script: {instanceID: 2608}
+      Script: {instanceID: 2606}
     - Class: 114
-      Script: {instanceID: 2698}
+      Script: {instanceID: 2696}
     - Class: 114
-      Script: {instanceID: 2756}
+      Script: {instanceID: 2754}
     - Class: 114
-      Script: {instanceID: 2780}
+      Script: {instanceID: 2778}
     - Class: 114
-      Script: {instanceID: 2882}
+      Script: {instanceID: 2880}
     - Class: 114
-      Script: {instanceID: 2966}
+      Script: {instanceID: 2962}
     - Class: 114
-      Script: {instanceID: 3110}
+      Script: {instanceID: 3106}
     - Class: 114
-      Script: {instanceID: 3222}
+      Script: {instanceID: 3218}
     - Class: 114
-      Script: {instanceID: 3552}
+      Script: {instanceID: 3548}
     - Class: 114
-      Script: {instanceID: 3706}
+      Script: {instanceID: 3702}
     - Class: 114
-      Script: {instanceID: 3828}
+      Script: {instanceID: 3824}
     - Class: 114
-      Script: {instanceID: 4172}
+      Script: {instanceID: 4168}
     - Class: 114
-      Script: {instanceID: 4582}
+      Script: {instanceID: 4578}
     - Class: 114
-      Script: {instanceID: 4814}
+      Script: {instanceID: 4810}
     - Class: 114
-      Script: {instanceID: 5266}
+      Script: {instanceID: 5262}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -178,23 +175,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1494}
     - Class: 114
-      Script: {instanceID: 2134}
+      Script: {instanceID: 2132}
     - Class: 114
-      Script: {instanceID: 2526}
+      Script: {instanceID: 2524}
     - Class: 114
-      Script: {instanceID: 2532}
+      Script: {instanceID: 2530}
     - Class: 114
-      Script: {instanceID: 2698}
+      Script: {instanceID: 2696}
     - Class: 114
-      Script: {instanceID: 2882}
+      Script: {instanceID: 2880}
     - Class: 114
-      Script: {instanceID: 3110}
+      Script: {instanceID: 3106}
     - Class: 114
-      Script: {instanceID: 3222}
+      Script: {instanceID: 3218}
     - Class: 114
-      Script: {instanceID: 3828}
+      Script: {instanceID: 3824}
     - Class: 114
-      Script: {instanceID: 4582}
+      Script: {instanceID: 4578}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -366,12 +363,6 @@ ScriptsOnlyBuild:
     className: GroupTrack
   - hash:
       serializedVersion: 2
-      Hash: 394f6387c112a79084c4383a4071e5f0
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: MonsterSpawner
-  - hash:
-      serializedVersion: 2
       Hash: 800c50acba124432abb4cf0d47202e06
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -532,12 +523,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: GraphicRaycaster
-  - hash:
-      serializedVersion: 2
-      Hash: 40206d87c14a04a39ced2886282bfdea
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Monster
   - hash:
       serializedVersion: 2
       Hash: f40fedccd4adbc76605bea6d67537e4b
@@ -1094,4 +1079,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Intro.unity
   - Assets/Scenes/Game.unity
-  playerPath: D:/Programming/Escape_test.exe
+  playerPath: C:/Users/jymh1/Desktop/Escape_test.exe
