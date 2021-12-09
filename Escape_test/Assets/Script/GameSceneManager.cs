@@ -13,8 +13,10 @@ public class GameSceneManager : MonoBehaviour
 
     public void gameStart()
     {
-        Debug.Log("start");
         SceneManager.LoadScene(1);
     }
-
+    public void gameQuit()
+    {
+        Application.Quit();
+    }
 }

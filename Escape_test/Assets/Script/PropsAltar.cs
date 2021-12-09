@@ -6,22 +6,21 @@ using UnityEngine;
 
     public class PropsAltar : MonoBehaviour
     {
-        public List<SpriteRenderer> runes;
-        public float lerpSpeed;
+    public List<SpriteRenderer> runes;
+    public float lerpSpeed;
     public GameObject chiken;
     public bool gameEnd = false;
 
-        private Color curColor;
-        private Color targetColor;
-        private float timeAfter;
+    private Color curColor;
+    private Color targetColor;
+    private float timeAfter;
 
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.tag == "Player") {
-            gameEnd = true;
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player") {
+        gameEnd = true;
 
-            targetColor = new Color(1, 1, 1, 1);
-
+        targetColor = new Color(1, 1, 1, 1);
         }
     }
     private void Start()
@@ -38,9 +37,9 @@ using UnityEngine;
 
         curColor = Color.Lerp(curColor, targetColor, lerpSpeed * Time.deltaTime);
 
-            foreach (var r in runes)
-            {
-                r.color = curColor;
-            }
+        foreach (var r in runes)
+        {
+            r.color = curColor;
         }
     }
+}
