@@ -33,7 +33,8 @@ public class PlayerController : MonoBehaviour
     private void Update() //매 프레임 마다 실행
     {
         PlayerMove(); //플레이어 이동
-        PlayerJump(); //플레이어 점프 && 앉기
+        PlayerJump(); //플레이어 점프
+        PlayerSit(); //플레이어  앉기
         PlayerAni(); //플레이어 애니메이션
     }
 
@@ -79,17 +80,22 @@ public class PlayerController : MonoBehaviour
             //점프하다가 떼는 경우 올라가는 속도를 절반으로 만듦
             //이로 인해 키를 빨리 뗄 수록 더 빨리 떨어짐
         }
+    }
 
+    private void PlayerSit()
+    {
+        float yInput = Input.GetAxis("Vertical"); //사용자 입력의 y축을 감지↑↓
         bool OnPlayerSit = (yInput < 0) && (isGrounded); //아래버튼 눌렀을 때, 땅 위에 있을 때
         if (OnPlayerSit)
         {
             CapsuleCollider2D.enabled = false; //앉을경우 서있을 때, 히트박스 비활성화
             isCrouched = true; // 앉았음을 감지
-        } else { 
+        }
+        else
+        {
             CapsuleCollider2D.enabled = true; //일어날 경우 히트박스 다시 활성화
             isCrouched = false;
         }
-
     }
 
     private void PlayerAni()
@@ -103,9 +109,14 @@ public class PlayerController : MonoBehaviour
     { //다른 물체와 접촉하는 동안 (바닥에 닿았음을 감지)
         if (collision.contacts[0].normal.y > 0.7f && collision.collider.CompareTag("Ground"))
         { //물체의 위쪽에 닿고, 이 물체가 Ground일 경우 
-            isGrounded = true; //isGrounded활성화
-            PlayerHit.isHit = false; //피격 상태 제거
+            OnGround(); //땅 위 처리
         }
+    }
+
+    private void OnGround()
+    { //땅에 닿았을 때
+        isGrounded = true; //isGrounded활성화
+        PlayerHit.isHit = false; //피격 상태 제거
     }
 
     private void OnCollisionExit2D(Collision2D collision)
