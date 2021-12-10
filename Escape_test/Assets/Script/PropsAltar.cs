@@ -15,12 +15,6 @@ using UnityEngine;
     private Color targetColor; //변화할 목표 색깔
     private float timeAfter; //시간 경과
 
-    private void OnTriggerEnter2D(Collider2D other)
-    { //종료 오브젝트가 다른 트리거와 접촉하는 순간
-        if (other.tag == "Player")//종료 오브젝트에 접촉한 다른 트리거가 플레이어일 경우
-            gameEnd = true; //게임 종료
-    }
-
     private void Start() //생성자
     {
         timeAfter = 0; //시간 경과 초기화
@@ -50,4 +44,11 @@ using UnityEngine;
             r.color = curColor; //룬의 색을 curColor로 바꿈
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    { //종료 오브젝트가 다른 트리거와 접촉하는 순간
+        if (other.tag == "Player")//종료 오브젝트에 접촉한 다른 트리거가 플레이어일 경우
+            gameEnd = true; //게임 종료
+    }
+
 }

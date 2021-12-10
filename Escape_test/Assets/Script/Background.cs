@@ -20,8 +20,7 @@ public class Background : MonoBehaviour
     void Update() //매 프레임마다 실행
     {
         ScrollingObject(); //좌측으로 이동시킴
-        if (transform.position.x <= -width*2f)  Reposition();
-        //좌측 끝까지 이동하면, 우측 끝에서 다시 시작
+        Reposition(); //좌측 끝까지 이동하면, 우측 끝에서 다시 시작
 
     }
     private void ScrollingObject()
@@ -31,9 +30,12 @@ public class Background : MonoBehaviour
 
     private void Reposition()
     { //우측 끝에서 다시 시작
-        Vector2 offset = new Vector2(width*3f, 0);
-        transform.position = (Vector2)transform.position + offset;
-        //현재 위치에서 offset만큼 위치를 더해줘서 원위치로 돌아옴
+        if (transform.position.x <= (-width * 2f))
+        { //좌측끝까지 이동한 경우
+            Vector2 offset = new Vector2(width * 3f, 0);
+            transform.position = (Vector2)transform.position + offset;
+            //현재 위치에서 offset만큼 위치를 더해줘서 원위치로 돌아옴
+        }
     }
 
 

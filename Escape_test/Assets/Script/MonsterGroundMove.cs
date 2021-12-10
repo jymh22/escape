@@ -26,27 +26,37 @@ public class MonsterGroundMove : MonoBehaviour
     private void Update()
     {
         timeAfterCycle += Time.deltaTime; //시간 경과 저장
+        MonsterMove();
+    }
+
+    private void MonsterMove()
+    {
         if (timeAfterCycle > (moveTime + idleTime)) //한 사이클 끝났을 때
         {
-            timeAfterCycle = 0f; //사이클 경과 시간 초기화
-            idleTime = Random.Range(idleTimeMin, idleTimeMax); //가만히 있는 시간 재지정
-            moveTime = Random.Range(moveTimeMin, moveTimeMax); //가만히 있는 시간 재지정
-            if (Random.Range(0, 2) == 1)
-                turnabout(); // 1/2 확률로 방향전환
+            CycleEnd();
         }
         else if (timeAfterCycle > moveTime) //가만히 있는 시간
-            MonsterIdle(); //몬스터 멈춤
+            Idle(); //몬스터 멈춤
         else //움직이는 시간
         {
-            MonsterMove(); //몬스터 이동
+            Move(); //몬스터 이동
         }
     }
 
-    private void MonsterIdle()
+    private void CycleEnd()
+    {
+        timeAfterCycle = 0f; //사이클 경과 시간 초기화
+        idleTime = Random.Range(idleTimeMin, idleTimeMax); //가만히 있는 시간 재지정
+        moveTime = Random.Range(moveTimeMin, moveTimeMax); //가만히 있는 시간 재지정
+        if (Random.Range(0, 2) == 1)
+            turnabout(); // 1/2 확률로 방향전환
+    }
+
+    private void Idle()
     {
         animator.SetBool("Moved", false); //이동 애니메이션 끔
     }
-    private void MonsterMove()
+    private void Move()
     {
         transform.position = new Vector2(transform.position.x - (moveSpeed * Time.deltaTime), transform.position.y);
         //앞으로 speed의 속도로 이동
